@@ -1,0 +1,15 @@
+.posts {
+    flex: 1;
+    max-height: 59vh;
+    overflow-y: scroll;
+    border: 3px solid #53c28b;
+    border-radius: 8px;
+    padding: 25px;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.posts::-webkit-scrollbar {
+    display: none;
+}

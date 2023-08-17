@@ -1,0 +1,26 @@
+.post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.imgContainer {
+    margin-right: 10px;
+}
+
+.img {
+    max-width: max-content;
+    width: 200px;
+    height: 100px;
+}
+
+.button {
+    padding: 20px;
+    cursor: pointer;
+    background-color: #53c28b;
+    border: none;
+    border-radius: 5px;
+    color: #eee;
+    font-weight: bold;
+}
