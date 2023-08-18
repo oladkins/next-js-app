@@ -1,8 +1,9 @@
 import Post from '@/models/Post';
 import connect from '@/utils/db';
-import { NextResponse } from 'next/server';
+import {NextRequest, NextResponse} from 'next/server';
+import {Params} from "next/dist/shared/lib/router/utils/route-matcher";
 
-export const GET = async (request, { params }) => {
+export const GET = async (request: NextRequest, { params }: Params) => {
   const { id } = params;
   try {
     await connect();
@@ -14,7 +15,7 @@ export const GET = async (request, { params }) => {
   }
 };
 
-export const DELETE = async (request, { params }) => {
+export const DELETE = async (request: NextRequest, { params }: Params) => {
   const { id } = params;
   try {
     await connect();

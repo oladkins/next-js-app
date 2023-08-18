@@ -1,8 +1,8 @@
 import Post from '@/models/Post';
 import connect from '@/utils/db';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async (request) => {
+export const GET = async (request: NextRequest) => {
   const url = new URL(request.url);
   const username = url.searchParams.get('username');
 
@@ -16,7 +16,7 @@ export const GET = async (request) => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = async (request: NextRequest) => {
   const body = await request.json();
 
   await connect();
