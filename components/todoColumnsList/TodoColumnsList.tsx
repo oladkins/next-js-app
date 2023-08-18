@@ -13,14 +13,14 @@ const Column = dynamic(() => import('@/components/column/Column'), { ssr: false 
 
 export const TodoColumnsList = ({ columnsOrder, state, postsData }: TodoColumnsListType) => (
   <div className={styles.columnsWrapper}>
-    {columnsOrder?.map((columnId, idx) => {
+    {columnsOrder?.map((columnId) => {
       if (state.columns.length) {
         const column = state?.columns?.find((el) => el?.id === columnId);
         const posts = column?.postIds
           ?.map((postId) => (postsData ? postsData[postId - 1] : []))
           .filter((el) => el);
 
-        return <Column key={column?._id} column={column} posts={posts} />;
+        return <Column key={column?._id} column={column} posts={posts as PostType[]} />;
       }
     })}
   </div>

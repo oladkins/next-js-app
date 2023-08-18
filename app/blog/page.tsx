@@ -7,8 +7,8 @@ import BlogItem from '@/components/blogItem/BlogItem';
 import Spinner from '@/components/spinner/Spinner';
 
 const Blog = () => {
-  const fetcher: Fetcher<PostType[]> = (arg: string) => fetch(arg).then((res) => res.json());
-  const { data, isLoading } = useSWR(`/api/posts`, fetcher);
+  const fetcher: Fetcher<PostType[], string> = (...args) => fetch(...args).then((res) => res.json());
+  const { data, isLoading } = useSWR(`/api/posts?username=admin`, fetcher);
 
   if (isLoading) {
     return <Spinner />;

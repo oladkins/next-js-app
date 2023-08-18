@@ -4,17 +4,22 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import styles from './page.module.css';
 import Spinner from '@/components/spinner/Spinner';
 import { TodoColumnsList } from '@/components/todoColumnsList/TodoColumnsList';
-import { ColumnType } from '@/types';
-import useSWR from 'swr';
+import { ColumnType, PostType } from '@/types';
+import useSWR, { Fetcher } from 'swr';
 
 export default function Todo() {
-  const [columnsOrder, setColumnsOrder] = useState<[string] | []>([]);
+  const [columnsOrder, setColumnsOrder] = useState<string[] | []>([]);
 
   const [state, setState] = useState<{ columns: ColumnType[] | [] }>({
     columns: [],
   });
 
-  const columnsFetcher = (...args) => fetch(...args).then((res) => res.json());
+  const columnsFetcher: Fetcher<
+    {
+      columns: ColumnType[];
+    }[],
+    string
+  > = (...args) => fetch(...args).then((res) => res.json());
   const { data: columnsData, isLoading: isColumnsLoading } = useSWR(
     `/api/columns?username=admin`,
     columnsFetcher,
@@ -26,7 +31,8 @@ export default function Todo() {
     },
   );
 
-  const postsFetcher = (...args) => fetch(...args).then((res) => res.json());
+  const postsFetcher: Fetcher<PostType[], string> = (...args) =>
+    fetch(...args).then((res) => res.json());
   const { data: postsData, isLoading: isPostsLoading } = useSWR(
     `/api/posts?username=admin`,
     postsFetcher,
@@ -39,7 +45,7 @@ export default function Todo() {
     }
   }, [columnsData]);
 
-  const reorderColumnList = (sourceCol?: ColumnType, startIndex: number, endIndex: number) => {
+  const reorderColumnList = (startIndex: number, endIndex: number, sourceCol?: ColumnType) => {
     if (sourceCol) {
       const newPostIds = Array.from(sourceCol.postIds);
       const [removed] = newPostIds.splice(startIndex, 1);
@@ -65,24 +71,25 @@ export default function Todo() {
     const destinationCol = state.columns.find((el) => el._id === destination.droppableId);
 
     if (sourceCol?.id === destinationCol?.id) {
-      const newColumn = reorderColumnList(sourceCol, source.index, destination.index);
+      const newColumn = reorderColumnList( source.index, destination.index, sourceCol);
       const newState = {
-        columns: state.columns.map((el) => (el._id === sourceCol._id ? newColumn : el)),
+        columns: state.columns.map((el) => (el._id === sourceCol?._id ? newColumn : el)),
       };
-      setState(newState);
+      setState(newState as { columns: [] | ColumnType[]; });
       return;
     }
 
     const startPostIds = sourceCol && Array.from(sourceCol.postIds);
 
-    const [removed] = startPostIds?.splice(source.index, 1);
+    const removed: number[] = startPostIds?.length ? startPostIds?.splice(source.index, 1) : [];
     const newStartCol = {
       ...sourceCol,
       postIds: startPostIds,
     };
 
-    const endPostIds = Array.from(destinationCol.postIds);
+    const endPostIds = destinationCol && destinationCol.postIds ? Array.from(destinationCol.postIds) : [];
 
+    // @ts-ignore
     endPostIds.splice(destination.index, 0, removed);
     const newEndCol = {
       ...destinationCol,
@@ -99,6 +106,7 @@ export default function Todo() {
       }),
     };
 
+    // @ts-ignore
     setState(newState);
   };
 

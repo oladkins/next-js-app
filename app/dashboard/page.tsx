@@ -21,7 +21,7 @@ const Dashboard = () => {
       createdAt: Date.now().toString(),
     };
 
-    addPost(data);
+    addPost(data).then(() => e.target.reset());
   };
 
   return (
