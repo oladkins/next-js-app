@@ -6,16 +6,18 @@ export const GET = async (request: NextRequest) => {
   const url = new URL(request.url);
   const username = url.searchParams.get('username');
 
-  try {
-    await connect();
+  if (username) {
+    try {
+      await connect();
 
-    const columns = await Column.find(username && { username });
+      const columns = await Column.find({ username });
 
-    const col = columns.filter((el) => el.username === username);
+      const col = columns.filter((el) => el.username === username);
 
-    return new NextResponse(JSON.stringify(col), { status: 200 });
-  } catch (error) {
-    return new NextResponse('Error in response of DB', { status: 500 });
+      return new NextResponse(JSON.stringify(col), { status: 200 });
+    } catch (error) {
+      return new NextResponse('Error in response of DB', { status: 500 });
+    }
   }
 };
 

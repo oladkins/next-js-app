@@ -6,13 +6,15 @@ export const GET = async (request: NextRequest) => {
   const url = new URL(request.url);
   const username = url.searchParams.get('username');
 
-  try {
-    await connect();
-    const posts = await Post.find(username && { username });
+  if (username) {
+    try {
+      await connect();
+      const posts = await Post.find({ username });
 
-    return new NextResponse(JSON.stringify(posts), { status: 200 });
-  } catch (error) {
-    return new NextResponse('Error in response of DB', { status: 500 });
+      return new NextResponse(JSON.stringify(posts), { status: 200 });
+    } catch (error) {
+      return new NextResponse('Error in response of DB', { status: 500 });
+    }
   }
 };
 
