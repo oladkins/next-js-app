@@ -1,11 +1,11 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import styles from './ContactForm.module.css';
 import Input from '@/components/input/Input';
 import Textarea from '@/components/textarea/Textarea';
 import Button from '@/components/button/Button';
 
 type ContactFormType = {
-  handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  handleSubmit: (e: any) => Promise<void>;
 };
 const ContactForm = ({ handleSubmit }: ContactFormType) => {
   return (

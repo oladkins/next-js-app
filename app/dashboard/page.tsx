@@ -5,12 +5,11 @@ import LinkButton from '@/components/linkButton/LinkButton';
 import { useDashboard } from '@/hooks/useDashboard';
 import PostsList from '@/components/postsList/PostsList';
 import NewPostForm from '@/components/newPostForm/NewPostForm';
-import { FormEvent } from 'react';
 
 const Dashboard = () => {
   const { addPost, isLoading } = useDashboard();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const data = {

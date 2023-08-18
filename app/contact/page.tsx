@@ -1,13 +1,12 @@
 'use client';
 import styles from './page.module.css';
 import Image from 'next/image';
-import { FormEvent } from 'react';
 import { useCreateContact } from '@/hooks/useCreateContact';
 import ContactForm from '@/components/contactForm/ContactForm';
 
 const Contact = () => {
   const { createContact } = useCreateContact();
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
 
     createContact({
