@@ -1,8 +1,8 @@
 import connect from '@/database/utils/db';
-import { NextResponse } from 'next/server';
+import {NextRequest, NextResponse} from 'next/server';
 import Contact from '@/database/models/ContactMessage';
 
-export const GET = async (request) => {
+export const GET = async () => {
   try {
     await connect();
     const contactMessages = await Contact.find();
@@ -13,7 +13,7 @@ export const GET = async (request) => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = async (request: NextRequest) => {
   const body = await request.json();
 
   await connect();
