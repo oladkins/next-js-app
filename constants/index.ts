@@ -1,6 +1,6 @@
-import { CategoriesItemsType, HeaderLinksPathsType, LinksType, PortfolioLinksType } from '@/types';
+import { CategoriesItemsType, FooterLinksPathsType, HeaderItemsType, PortfolioLinksType } from '@/types';
 
-export const headerLinksPaths: HeaderLinksPathsType[] = [
+export const footerLinksPaths: FooterLinksPathsType[] = [
   {
     src: '/vk.png',
     url: 'vk.com',
@@ -34,7 +34,7 @@ export const portfolioLinks: PortfolioLinksType[] = [
   },
 ];
 
-export const links: LinksType = [
+export const headerItems: HeaderItemsType = [
   {
     id: 1,
     title: 'Home',

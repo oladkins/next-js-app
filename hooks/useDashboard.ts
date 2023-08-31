@@ -1,21 +1,18 @@
 import { useState } from 'react';
-import useSWR, { Fetcher } from 'swr';
+import useSWR from 'swr';
 import { toast } from 'react-toastify';
-import { ColumnType, PostType } from '@/types';
 
 export const useDashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetcher: Fetcher<PostType[], string> = (...args) =>
-    fetch(...args).then((res) => res.json());
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const {
     data: postsData,
     mutate,
     isLoading: postsLoading,
   } = useSWR(`/api/posts?username=admin`, fetcher);
 
-  const columnsFetcher: Fetcher<ColumnType, string> = (...args) =>
-    fetch(...args).then((res) => res.json());
+  const columnsFetcher = (...args) => fetch(...args).then((res) => res.json());
   const {} = useSWR(`/api/columns?username=admin`, columnsFetcher);
 
   const addPost = async (data: any) => {
@@ -35,7 +32,7 @@ export const useDashboard = () => {
         toast.error(postsResponse.statusText);
       }
     } catch (error) {
-      toast.error((error as Error).message);
+      console.log(error);
       setIsLoading(false);
     }
   };
@@ -53,7 +50,7 @@ export const useDashboard = () => {
         toast.success('Your post has been removed');
       }
     } catch (error) {
-      toast.error((error as Error).message);
+      toast.error(error.message);
       setIsLoading(false);
     }
   };

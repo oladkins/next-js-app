@@ -13,16 +13,16 @@ const About = () => {
           className={styles.img}
         />
         <div className={styles.imgText}>
-          <h1 className={styles.imgTitle}>Lorem ipsum dolor sit</h1>
-          <h2 className={styles.imgDesc}>
+          <h2 className={styles.imgTitle}>Lorem ipsum dolor sit</h2>
+          <h3 className={styles.imgDesc}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </h2>
+          </h3>
         </div>
       </div>
 
       <div className={styles.textContainer}>
         <div className={styles.item}>
-          <h1 className={styles.title}>Who Are We?</h1>
+          <h2 className={styles.title}>Who Are We?</h2>
           <p className={styles.desc}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quae dolor, optio
             voluptatibus magnam iure esse tempora beatae. A suscipit eos. Animi quibusdam cum omnis
@@ -38,7 +38,7 @@ const About = () => {
         </div>
 
         <div className={styles.item}>
-          <h1 className={styles.title}>What We Do?</h1>
+          <h2 className={styles.title}>What We Do?</h2>
           <p className={styles.desc}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quae dolor, optio
             voluptatibus magnam iure esse tempora beatae, a suscipit eos. Animi quibusdam cum omnis

@@ -13,7 +13,7 @@ const CategoryItem = ({ id, title, desc, image }: CategoryItemType) => {
   return (
     <div className={styles.item} key={id}>
       <div className={styles.content}>
-        <h1 className={styles.title}>{title}</h1>
+        <h2 className={styles.title}>{title}</h2>
         <p className={styles.desc}>{desc}</p>
         <LinkButton text='See More' url='#' />
       </div>

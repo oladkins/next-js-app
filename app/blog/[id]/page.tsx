@@ -25,7 +25,7 @@ const BlogId: ({ params }: { params: any }) => Promise<JSX.Element> = async ({ p
             <Image src={data.img} alt='' width={40} height={40} className={styles.avatar} />
             <span className={styles.username}>{data.username}</span>
           </div>
-          <h1 className={styles.title}>{data.title}</h1>
+          <h2 className={styles.title}>{data.title}</h2>
           <p className={styles.desc}>{data.desc}</p>
         </div>
         <div className={styles.imageContainer}>

@@ -11,7 +11,7 @@ const BlogItem = ({ _id, img, title, content }: Omit<PostType, 'username' | 'des
         <Image src={img} alt='' width={400} height={250} className={styles.image} />
       </div>
       <div className={styles.content}>
-        <h1 className={styles.title}>{title}</h1>
+        <h2 className={styles.title}>{title}</h2>
         <p className={styles.desc}>{content}</p>
       </div>
     </Link>

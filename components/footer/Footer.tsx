@@ -1,17 +1,17 @@
 import React from 'react';
 import styles from './Footer.module.css';
 import Image from 'next/image';
-import { headerLinksPaths } from '@/constants';
+import { footerLinksPaths } from '@/constants';
 
 const Footer = () => {
   return (
     <footer className={styles.container}>
-      <div>2023 My Next App. All rights reserved</div>
-      <div className={styles.social}>
-        {headerLinksPaths.map(({ src, url }) => (
+      <section>2023 My Next App. All rights reserved</section>
+      <section className={styles.social}>
+        {footerLinksPaths.map(({ src, url }) => (
           <Image key={src} src={src} alt={url} width={25} height={25} className={styles.icon} />
         ))}
-      </div>
+      </section>
     </footer>
   );
 };

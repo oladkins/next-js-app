@@ -14,7 +14,7 @@ const PostsList = () => {
         <Spinner />
       ) : (
         <>
-          {postsData?.length ? (
+          {postsData.length ? (
             postsData?.map((post: PostType, index: number) => (
               <Post key={post._id} post={post} handleDelete={deletePost} index={index} />
             ))

@@ -7,7 +7,7 @@ const Portfolio = () => {
   const prefix = '/portfolio/';
   return (
     <div className={styles.container}>
-      <h1 className={styles.selectTitle}>Choose a gallery</h1>
+      <h2 className={styles.selectTitle}>Choose a gallery</h2>
       <div className={styles.items}>
         {portfolioLinks.map(({ url, name }) => (
           <Link href={prefix + url} className={styles.item} key={name}>

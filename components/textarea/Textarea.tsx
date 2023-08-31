@@ -9,7 +9,6 @@ type TextareaType = {
   value?: string;
   onChange?: (val: ChangeEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
-  name?: string;
 };
 
 const Textarea = ({
@@ -20,7 +19,6 @@ const Textarea = ({
   rows,
   cols,
   required,
-  name,
 }: TextareaType) => (
   <textarea
     className={className || styles.textarea}
@@ -30,7 +28,6 @@ const Textarea = ({
     value={value}
     onChange={onChange}
     required={required}
-    name={name}
   ></textarea>
 );
 

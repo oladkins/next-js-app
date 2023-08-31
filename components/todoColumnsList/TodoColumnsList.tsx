@@ -20,7 +20,7 @@ export const TodoColumnsList = ({ columnsOrder, state, postsData }: TodoColumnsL
           ?.map((postId) => (postsData ? postsData[postId - 1] : []))
           .filter((el) => el);
 
-        return <Column key={column?._id} column={column} posts={posts as PostType[]} />;
+        return <Column key={column?._id} column={column} posts={posts} />;
       }
     })}
   </div>

@@ -1,27 +1,25 @@
-import connect from '@/utils/db';
-import { NextRequest, NextResponse } from 'next/server';
-import Column from '@/models/Column';
+import connect from '@/database/utils/db';
+import { NextResponse } from 'next/server';
+import Column from '@/database/models/Column';
 
-export const GET = async (request: NextRequest) => {
+export const GET = async (request) => {
   const url = new URL(request.url);
   const username = url.searchParams.get('username');
 
-  if (username) {
-    try {
-      await connect();
+  try {
+    await connect();
 
-      const columns = await Column.find({ username });
+    const columns = await Column.find(username && { username });
 
-      const col = columns.filter((el) => el.username === username);
+    const col = columns.filter((el) => el.username === username);
 
-      return new NextResponse(JSON.stringify(col), { status: 200 });
-    } catch (error) {
-      return new NextResponse('Error in response of DB', { status: 500 });
-    }
+    return new NextResponse(JSON.stringify(col), { status: 200 });
+  } catch (error) {
+    return new NextResponse('Error in response of DB', { status: 500 });
   }
 };
 
-export const POST = async (request: NextRequest) => {
+export const POST = async (request) => {
   const { username, columns } = await request.json();
 
   await connect();

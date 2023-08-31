@@ -1,24 +1,22 @@
-import Post from '@/models/Post';
-import connect from '@/utils/db';
-import { NextRequest, NextResponse } from 'next/server';
+import Post from '@/database/models/Post';
+import connect from '@/database/utils/db';
+import { NextResponse } from 'next/server';
 
-export const GET = async (request: NextRequest) => {
+export const GET = async (request) => {
   const url = new URL(request.url);
   const username = url.searchParams.get('username');
 
-  if (username) {
-    try {
-      await connect();
-      const posts = await Post.find({ username });
+  try {
+    await connect();
+    const posts = await Post.find(username && { username });
 
-      return new NextResponse(JSON.stringify(posts), { status: 200 });
-    } catch (error) {
-      return new NextResponse('Error in response of DB', { status: 500 });
-    }
+    return new NextResponse(JSON.stringify(posts), { status: 200 });
+  } catch (error) {
+    return new NextResponse('Error in response of DB', { status: 500 });
   }
 };
 
-export const POST = async (request: NextRequest) => {
+export const POST = async (request) => {
   const body = await request.json();
 
   await connect();

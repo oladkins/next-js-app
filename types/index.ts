@@ -20,13 +20,13 @@ export type PostType = {
   username: string;
 };
 
-export type LinksType = Array<{
+export type HeaderItemsType = Array<{
   id: number;
   title: string;
   url: string;
 }>;
 
-export type HeaderLinksPathsType = {
+export type FooterLinksPathsType = {
   src: string;
   url: string;
 };

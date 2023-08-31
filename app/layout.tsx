@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Navbar from '@/components/navbar/Navbar';
+import Header from '@/components/navbar/Header';
 import Footer from '@/components/footer/Footer';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ReactNode } from 'react';
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider>
           <ToastProvider>
               <div className='container'>
-                <Navbar />
+                <Header />
                 <main>{children}</main>
                 <Footer />
               </div>

@@ -9,7 +9,6 @@ type ColumnComponentType = {
 };
 
 export function Column({ column, posts }: ColumnComponentType) {
-  if (!column?._id) return;
   return (
     <div className={styles.columnWrapper}>
       <div className={styles.titleContainer}>
@@ -17,7 +16,7 @@ export function Column({ column, posts }: ColumnComponentType) {
       </div>
 
       <Droppable droppableId={column?._id}>
-        {(droppableProvided) => (
+        {(droppableProvided, droppableSnapshot) => (
           <div
             className={styles.columnContainer}
             ref={droppableProvided.innerRef}
@@ -26,7 +25,7 @@ export function Column({ column, posts }: ColumnComponentType) {
             {posts?.map((post, index) => {
               return (
                 <Draggable key={post?._id} draggableId={`${post?._id}`} index={index}>
-                  {(draggableProvided) => (
+                  {(draggableProvided, draggableSnapshot) => (
                     <div
                       className={styles.column}
                       ref={draggableProvided.innerRef}
